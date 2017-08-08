@@ -13,7 +13,9 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "@nuxtjs/axios": "^3.1.2",
+    "@nuxtjs/cssnano": "^1.0.1",
+    "@nuxtjs/icon": "^1.0.1",
     "date-fns": "^1.28.5",
     "dotenv": "^4.0.0",
     "fuse.js": "^3.0.5",
