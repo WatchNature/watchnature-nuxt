@@ -30,8 +30,8 @@ export const mutations = {
 }
 
 export const actions = {
-  findAll (context) {
-    axios.get('posts')
+  findAll (context, { $axios }) {
+    $axios.get('posts')
       .then(response => {
         const posts = response.data.data
         context.commit('replace', posts)

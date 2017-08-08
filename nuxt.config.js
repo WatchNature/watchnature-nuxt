@@ -18,11 +18,14 @@ module.exports = {
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
     GA_ID: process.env.GA_IDK
   },
+  css: [
+    'tachyons/css/tachyons.css'
+  ],
   modules: [
     '@nuxtjs/icon',
     '@nuxtjs/cssnano',
     ['@nuxtjs/axios', {
-      debug: true
+      credentials: false
     }]
   ],
   build: {
