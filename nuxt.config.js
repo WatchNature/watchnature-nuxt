@@ -15,6 +15,7 @@ module.exports = {
   loading: { color: '#3B8070' },
   env: {
     API_URL: process.env.API_URL,
+    API_AUTH_URL: process.env.API_AUTH_URL,
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
     GA_ID: process.env.GA_IDK
   },

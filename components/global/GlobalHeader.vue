@@ -15,7 +15,7 @@
     <nav v-if="userIsAuthenticated">
       <router-link
         class="dn dib-m"
-        :to="{ name: 'userprofile', params: { id: currentUser.id }}"
+        to="/"
       >
         {{ currentUser.email }}
       </router-link>
@@ -37,11 +37,11 @@ import _ from 'lodash'
 export default {
   computed: {
     userIsAuthenticated () {
-      return !_.isEmpty(this.$store.state.currentUser)
+      return !_.isEmpty(this.$store.state.auth.currentUser)
     },
 
     currentUser () {
-      return this.$store.state.currentUser
+      return this.$store.state.auth.currentUser
     }
   },
 
