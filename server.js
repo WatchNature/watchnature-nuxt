@@ -21,7 +21,7 @@ app.set('trust proxy', true)
 app.use(bodyParser.json())
 app.use(cors())
 
-const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379'
+const redisUrl = process.env.REDISCLOUD_URL || 'redis://localhost:6379'
 const redisClient = require('redis').createClient(redisUrl)
 const RedisStore = require('connect-redis')(session)
 
