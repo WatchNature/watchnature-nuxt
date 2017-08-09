@@ -36,9 +36,9 @@ export default {
         password: this.password
       }
 
-      this.$store.dispatch('auth/signIn', { payload: payload, $axios: this.$axios })
+      this.$store.dispatch('signIn', { payload: payload, $axios: this.$axios })
         .then(response => {
-          this.$router.push('/')
+          window.location = '/'
         })
         .catch(response => {
           alert(response.response.data.errors[0].detail)

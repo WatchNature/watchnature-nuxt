@@ -37,18 +37,23 @@ import _ from 'lodash'
 export default {
   computed: {
     userIsAuthenticated () {
-      return !_.isEmpty(this.$store.state.auth.currentUser)
+      return !_.isEmpty(this.$store.state.currentUser)
     },
 
     currentUser () {
-      return this.$store.state.auth.currentUser
+      return this.$store.state.currentUser
     }
   },
 
   methods: {
     signOut () {
-      this.$store.commit('removeCurrentUser')
-      this.$store.commit('removeAuthToken')
+      this.$store.dispatch('signOut')
+        .then((response) => {
+          window.location = '/'
+        })
+        .catch(response => {
+          alert(response.response.data.errors[0].detail)
+        })
     }
   }
 }
