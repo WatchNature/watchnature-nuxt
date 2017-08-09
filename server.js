@@ -5,12 +5,19 @@ const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const app = require('express')()
+const enforce = require('express-sslify')
 const cors = require('cors')
 
 const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || '8080'
 
-// Body parser, to access req.body
+if (isProd) {
+  app.use(enforce.HTTPS({
+    trustProtoHeader: true
+  }))
+}
+
+app.set('trust proxy', true)
 app.use(bodyParser.json())
 app.use(cors())
 
