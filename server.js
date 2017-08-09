@@ -42,7 +42,8 @@ app.post('/sessions/signin', serverController.createSession)
 app.post('/sessions/signout', serverController.deleteSession)
 
 // We instantiate Nuxt.js with the options
-const nuxtConfig = require('./nuxt.config.js')
+let nuxtConfig = require('./nuxt.config.js')
+nuxtConfig.dev = !(process.env.NODE_ENV === 'production')
 const nuxt = new Nuxt(nuxtConfig)
 
 // No build in production
