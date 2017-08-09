@@ -1,3 +1,6 @@
+const COOKIE_MAX_AGE_DAYS = 1000 * 60 * 60 * 24 * 30 // 30 days
+const isProd = process.env.NODE_ENV === 'production'
+
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -11,12 +14,20 @@ const port = process.env.PORT || '8080'
 app.use(bodyParser.json())
 app.use(cors())
 
-// Sessions to create req.session
+const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379'
+const redisClient = require('redis').createClient(redisUrl)
+const RedisStore = require('connect-redis')(session)
+
 app.use(session({
-  secret: 'super-secret-key',
+  proxy: true,
+  store: new RedisStore({client: redisClient}),
+  secret: process.env.SESSION_SECRET || 'a great secret',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 60000 }
+  cookie: {
+    maxAge: COOKIE_MAX_AGE_DAYS,
+    secure: isProd
+  }
 }))
 
 const serverController = require('./server-controller')
@@ -24,7 +35,6 @@ app.post('/sessions/signin', serverController.createSession)
 app.post('/sessions/signout', serverController.deleteSession)
 
 // We instantiate Nuxt.js with the options
-const isProd = process.env.NODE_ENV === 'production'
 const nuxtConfig = require('./nuxt.config.js')
 const nuxt = new Nuxt(nuxtConfig)
 
