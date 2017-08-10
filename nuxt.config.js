@@ -2,11 +2,17 @@ require('dotenv').config()
 
 module.exports = {
   head: {
-    title: 'Watch Nature',
+    title: 'Modern Social Field Guide',
+    titleTemplate: '%s - Watch Nature',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Building a modern social field guide to life on Earth and the community to power it.' },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:title', property: 'og:title', content: 'Watch Nature' },
+      { hid: 'og:description', property: 'og:description', content: 'Building a modern social field guide to life on Earth and the community to power it.' },
+      { hid: 'og:url', property: 'og:url', content: 'https://alpha.watchnature.co' },
+      { hid: 'og:image', property: 'og:image', content: 'https://alpha.watchnature.co/images/wn.png' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
