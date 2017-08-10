@@ -35,8 +35,17 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import Vue from 'vue'
 import StepHeader from '~/components/post-wizard/StepHeader.vue'
 import Spinner from '~/components/global/Spinner.vue'
+import * as VueGoogleMaps from '~/node_modules/vue2-google-maps'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: process.env.GOOGLE_MAPS_API_KEY,
+    libraries: 'places' // If you need to use place input
+  }
+})
 
 export default {
   name: 'LocationForm',
