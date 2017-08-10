@@ -31,8 +31,7 @@ module.exports = {
   ],
   plugins: [],
   modules: [
-    '@nuxtjs/icon',
-    '@nuxtjs/cssnano',
+    '@nuxtjs/pwa',
     ['@nuxtjs/axios', {
       credentials: false,
       redirectError: {
