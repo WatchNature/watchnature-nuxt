@@ -11,7 +11,10 @@
 import Vue from 'vue'
 import VueLazyload from 'vue-lazyload'
 
-Vue.use(VueLazyload)
+Vue.use(VueLazyload, {
+  loading: '/images/loading.svg',
+  attempt: 1
+})
 
 export default {
   name: 'ObservationImage',
@@ -30,14 +33,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  img
-    transition all 240ms ease-out
-
-  img[lazy=loading]
-    opacity 0
-
+  img[lazy=loading] {}
   img[lazy=error] {}
-
-  img[lazy=loaded]
-    opacity 1
+  img[lazy=loaded] {}
 </style>
