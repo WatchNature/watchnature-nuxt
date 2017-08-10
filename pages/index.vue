@@ -13,22 +13,6 @@ export default {
 
   components: {
     PostList
-  },
-
-  watch: {
-    '$route': () => {
-      this.bootstrap()
-    }
-  },
-
-  methods: {
-    bootstrap () {
-      this.$store.dispatch('posts/findAll', { $axios: this.$axios })
-    }
-  },
-
-  created () {
-    this.bootstrap()
   }
 }
 </script>

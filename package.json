@@ -44,6 +44,7 @@
     "stylus-loader": "^3.0.1",
     "tachyons": "^4.7.4",
     "vue-lazyload": "^1.0.6",
+    "vue-mugen-scroll": "^0.2.5",
     "vue2-google-maps": "^0.7.10",
     "vuex-router-sync": "^4.2.0"
   }

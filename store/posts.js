@@ -22,21 +22,27 @@ export const mutations = {
     state.all = posts
   },
 
-  add (state, postData) {
-    state.all.push(postData)
+  add (state, posts) {
+    posts.forEach((post) => {
+      state.all.push(post)
+    })
   }
 }
 
 export const actions = {
-  findAll (context, { $axios }) {
-    $axios.get('posts')
-      .then(response => {
-        const posts = response.data.data
-        context.commit('replace', posts)
-      })
-      .catch(response => {
-        console.error(response)
-      })
+  findAll (context, { params, $axios }) {
+    return new Promise((resolve, reject) => {
+      $axios.get('posts', { params: params })
+        .then(response => {
+          const posts = response.data.data
+          context.commit('add', posts)
+          resolve(response.data)
+        })
+        .catch(err => {
+          console.error(err)
+          reject(err)
+        })
+    })
   },
 
   create (context, { post, $axios }) {
