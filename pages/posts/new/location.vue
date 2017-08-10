@@ -37,7 +37,6 @@
 import { mapActions, mapGetters } from 'vuex'
 import Vue from 'vue'
 import StepHeader from '~/components/post-wizard/StepHeader.vue'
-import Spinner from '~/components/global/Spinner.vue'
 import * as VueGoogleMaps from '~/node_modules/vue2-google-maps'
 
 Vue.use(VueGoogleMaps, {
@@ -52,8 +51,7 @@ export default {
   layout: 'PostWizard',
 
   components: {
-    StepHeader,
-    Spinner
+    StepHeader
   },
 
   data () {

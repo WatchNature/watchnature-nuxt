@@ -24,7 +24,6 @@ module.exports = {
   ],
   plugins: [],
   modules: [
-    '@nuxtjs/pwa',
     '@nuxtjs/icon',
     '@nuxtjs/cssnano',
     ['@nuxtjs/axios', {

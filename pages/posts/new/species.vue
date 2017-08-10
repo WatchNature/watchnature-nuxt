@@ -53,15 +53,13 @@
 import _ from 'lodash'
 import { mapActions } from 'vuex'
 import StepHeader from '~/components/post-wizard/StepHeader.vue'
-import Spinner from '~/components/global/Spinner.vue'
 
 export default {
   name: 'SpeciesForm',
   layout: 'PostWizard',
 
   components: {
-    StepHeader,
-    Spinner
+    StepHeader
   },
 
   data () {
