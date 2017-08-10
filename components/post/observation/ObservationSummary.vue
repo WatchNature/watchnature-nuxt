@@ -10,7 +10,11 @@
     </header>
 
     <div class="observation_summary__image">
-      <img v-if="firstImageUrl" :src="firstImageUrl" />
+      <img
+        v-if="firstImageUrl"
+        :src="firstImageUrl"
+        :alt="imageAlt()"
+      />
     </div>
 
     <div class="observation_summary__description">
@@ -49,6 +53,10 @@ export default {
   methods: {
     startCase (str) {
       return startCase(str)
+    },
+
+    imageAlt () {
+      return `Photo: ${this.observation.description}`
     }
   }
 }
