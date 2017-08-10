@@ -1,5 +1,6 @@
 <template>
   <div>
+    <notification-drawer/>
     <global-header/>
 
     <div class="wrap">
@@ -11,6 +12,7 @@
 </template>
 
 <script>
+import NotificationDrawer from '~/components/global/notifications/NotificationDrawer.vue'
 import GlobalHeader from '~/components/global/GlobalHeader.vue'
 import TabBar from '~/components/global/TabBar.vue'
 
@@ -18,6 +20,7 @@ export default {
   name: 'DefaultLayout',
 
   components: {
+    NotificationDrawer,
     GlobalHeader,
     TabBar
   }
