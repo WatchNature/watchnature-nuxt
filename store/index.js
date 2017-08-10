@@ -34,10 +34,6 @@ export const actions = {
     if (req.session && req.session.currentUser) {
       context.commit('setCurrentUser', req.session.currentUser)
       context.commit('setAuthToken', req.session.authToken)
-
-      // console.log(context)
-
-      // this.$axios.setHeader('Authorization', req.session.authToken)
     }
   },
 
