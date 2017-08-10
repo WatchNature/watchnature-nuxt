@@ -26,6 +26,12 @@ export default {
     WizardMenu
   },
 
+  fetch ({ store, redirect }) {
+    if (!store.state.authToken) {
+      return redirect('/signin')
+    }
+  },
+
   computed: {
     postData () {
       return this.$store.getters['postWizard/post']

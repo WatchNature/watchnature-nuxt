@@ -28,6 +28,10 @@ module.exports = {
     '@nuxtjs/cssnano',
     ['@nuxtjs/axios', {
       credentials: false,
+      redirectError: {
+        401: '/signin',
+        403: '/signin'
+      },
       requestInterceptor: (config, { store }) => {
         config.headers.common['Content-Type'] = 'application/json'
         config.headers.common['Accept'] = 'application/json'

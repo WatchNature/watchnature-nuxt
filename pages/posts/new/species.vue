@@ -62,6 +62,12 @@ export default {
     StepHeader
   },
 
+  fetch ({ store, redirect }) {
+    if (!store.state.authToken) {
+      return redirect('/signin')
+    }
+  },
+
   data () {
     return {
       prevUrl: '/posts/new',
