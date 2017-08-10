@@ -17,6 +17,7 @@
     "@nuxtjs/axios": "^3.1.2",
     "@nuxtjs/cssnano": "^1.0.1",
     "@nuxtjs/icon": "^1.0.1",
+    "@nuxtjs/pwa": "^0.2.0",
     "babel-eslint": "^7.2.3",
     "body-parser": "^1.17.2",
     "connect-redis": "^3.3.0",

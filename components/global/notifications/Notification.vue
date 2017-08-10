@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import IconClose from '../../icons/IconClose.vue'
+import IconClose from '~/components/icons/IconClose.vue'
 
 export default {
   name: 'Notification',

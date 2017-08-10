@@ -1,40 +1,37 @@
 <template>
   <div>
-    <global-header/>
+    <notification-drawer></notification-drawer>
 
     <div class="wrap">
       <nuxt/>
     </div>
-
-    <tab-bar></tab-bar>
   </div>
 </template>
 
 <script>
-import GlobalHeader from '~/components/global/GlobalHeader.vue'
-import TabBar from '~/components/global/TabBar.vue'
+import NotificationDrawer from '~/components/global/notifications/NotificationDrawer.vue'
 
 export default {
-  name: 'DefaultLayout',
+  name: 'PostWizardLayout',
 
   components: {
-    GlobalHeader,
-    TabBar
+    NotificationDrawer
   }
 }
 </script>
 
-
 <style lang="stylus">
+.container
+  max-width 45rem
+  margin 0 auto
+
 body
   font-family -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
   background #f0f0f0
 
 .wrap
-  padding-top: 68px;
-  padding-bottom: 50px;
-
-.container
+  padding-top 68px
+  padding-bottom 50px
   max-width 45rem
   margin 0 auto
 
@@ -84,5 +81,5 @@ textarea
   transition all 240ms cubic-bezier(0.215, 0.61, 0.355, 1)
 
 .fade-enter, .fade-leave-to
-  opacity 0
+  opacity
 </style>

@@ -30,10 +30,14 @@ export const mutations = {
 }
 
 export const actions = {
-  nuxtServerInit: function ({ commit }, { req }) {
+  nuxtServerInit: function (context, { req }) {
     if (req.session && req.session.currentUser) {
-      commit('setCurrentUser', req.session.currentUser)
-      commit('setAuthToken', req.session.authToken)
+      context.commit('setCurrentUser', req.session.currentUser)
+      context.commit('setAuthToken', req.session.authToken)
+
+      // console.log(context)
+
+      // this.$axios.setHeader('Authorization', req.session.authToken)
     }
   },
 

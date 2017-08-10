@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => ({
   included: [],
   all: []
@@ -41,9 +39,9 @@ export const actions = {
       })
   },
 
-  create (context, post) {
+  create (context, { post, $axios }) {
     return new Promise((resolve, reject) => {
-      axios.post('posts', { post: post })
+      $axios.post('posts', { post: post })
         .then(response => {
           context.commit('add', response.data.data)
           resolve(response.data.data)

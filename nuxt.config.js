@@ -22,11 +22,23 @@ module.exports = {
   css: [
     'tachyons/css/tachyons.css'
   ],
+  plugins: [],
   modules: [
+    '@nuxtjs/pwa',
     '@nuxtjs/icon',
     '@nuxtjs/cssnano',
     ['@nuxtjs/axios', {
-      credentials: false
+      credentials: false,
+      requestInterceptor: (config, { store }) => {
+        config.headers.common['Content-Type'] = 'application/json'
+        config.headers.common['Accept'] = 'application/json'
+
+        if (store.state.authToken) {
+          config.headers.common['Authorization'] = `Bearer ${store.state.authToken}`
+        }
+
+        return config
+      }
     }]
   ],
   build: {

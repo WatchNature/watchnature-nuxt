@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const state = () => ({
   all: []
 })
@@ -21,9 +19,9 @@ export const mutations = {
 }
 
 export const actions = {
-  findAll (context) {
+  findAll (context, { $axios }) {
     return new Promise((resolve, reject) => {
-      axios.get('tags')
+      $axios.get('tags')
         .then(response => {
           const tags = response.data.data
           context.commit('replace', tags)

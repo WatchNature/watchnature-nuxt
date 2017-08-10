@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Notification from './Notification.vue'
+import Notification from '~/components/global/notifications/Notification.vue'
 
 export default {
   name: 'NotificationDrawer',

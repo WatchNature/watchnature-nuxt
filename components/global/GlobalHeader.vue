@@ -13,12 +13,12 @@
     </nav>
 
     <nav v-if="userIsAuthenticated">
-      <router-link
+      <nuxt-link
         class="dn dib-m"
         to="/"
       >
         {{ currentUser.email }}
-      </router-link>
+      </nuxt-link>
 
       <button
         class="input-reset button-reset ma0 pa0 white bg-transparent bn f5"
@@ -33,15 +33,16 @@
 
 <script>
 import _ from 'lodash'
+import { mapGetters } from 'vuex'
 
 export default {
   computed: {
-    userIsAuthenticated () {
-      return !_.isEmpty(this.$store.state.currentUser)
-    },
+    ...mapGetters({
+      currentUser: 'currentUser'
+    }),
 
-    currentUser () {
-      return this.$store.state.currentUser
+    userIsAuthenticated () {
+      return !_.isEmpty(this.currentUser)
     }
   },
 
