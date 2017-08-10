@@ -37,7 +37,7 @@
     "fuse.js": "^3.0.5",
     "js-cookie": "^2.1.4",
     "lodash": "^4.17.4",
-    "nuxt": "^1.0.0-rc3",
+    "nuxt": "^1.0.0-rc4",
     "redis": "^2.8.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
