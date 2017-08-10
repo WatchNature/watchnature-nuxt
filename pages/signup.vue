@@ -27,8 +27,6 @@
 </template>
 
 <script>
-import Axios from 'axios'
-
 export default {
   name: 'Signup',
 
@@ -45,8 +43,7 @@ export default {
 
   methods: {
     signup () {
-      // eslint-disable-next-line no-undef
-      Axios.post(`${API_BASE_URL}/users`, { user: this.user })
+      this.$axios.post('users', { user: this.user })
         .then((response) => {
           this.$router.push({ path: '/signin' })
           this.$store.dispatch('notifications/add', {
