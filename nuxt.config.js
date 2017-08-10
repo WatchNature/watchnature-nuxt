@@ -15,7 +15,8 @@ module.exports = {
       { hid: 'og:image', property: 'og:image', content: 'https://alpha.watchnature.co/images/wn.png' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'apple-touch-icon', href: '/icon.png' }
     ]
   },
   loading: { color: '#3B8070' },
