@@ -10,11 +10,11 @@
     </header>
 
     <div class="observation_summary__image">
-      <img
+      <observation-image
         v-if="firstImageUrl"
         :src="firstImageUrl"
         :alt="imageAlt()"
-      />
+      ></observation-image>
     </div>
 
     <div class="observation_summary__description">
@@ -24,10 +24,15 @@
 </template>
 
 <script>
+import ObservationImage from '~/components/post/observation/observation-image.vue'
 import { startCase } from 'lodash'
 
 export default {
   name: 'ObservationSummary',
+
+  components: {
+    ObservationImage
+  },
 
   props: {
     observation: {
