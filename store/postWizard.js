@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { cloneDeep } from 'lodash'
 
 // Posts can have more than one observation,
 // but for the current version, the UI doesn't allow
@@ -23,10 +23,15 @@ const blankPost = {
 }
 
 export const state = () => ({
-  post: _.cloneDeep(blankPost)
+  saving: false,
+  post: cloneDeep(blankPost)
 })
 
 export const getters = {
+  saving (state) {
+    return state.saving
+  },
+
   post (state) {
     return state.post
   },
@@ -57,6 +62,10 @@ export const getters = {
 }
 
 export const mutations = {
+  setSaving (state, status) {
+    state.saving = status
+  },
+
   addDescription (state, description) {
     state.post.observations[0].description = description
   },
@@ -81,11 +90,15 @@ export const mutations = {
   },
 
   reset (state) {
-    state.post = _.cloneDeep(blankPost)
+    state.post = cloneDeep(blankPost)
   }
 }
 
 export const actions = {
+  setSaving (context, status) {
+    context.commit('setSaving', status)
+  },
+
   addDescription (context, description) {
     return new Promise((resolve, reject) => {
       context.commit('addDescription', description)

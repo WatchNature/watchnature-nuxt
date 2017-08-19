@@ -3,7 +3,7 @@
     <step-header
       title="New Post"
       prevUrl="/"
-      :show-action-button="true"
+      :show-action-button="showActionButton"
       :actionCallback="save"
     ></step-header>
 
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import _ from 'lodash'
 import StepHeader from '~/components/post-wizard/StepHeader.vue'
 import WizardMenu from '~/components/post-wizard/WizardMenu.vue'
@@ -33,18 +33,26 @@ export default {
   },
 
   computed: {
-    postData () {
-      return this.$store.getters['postWizard/post']
+    ...mapGetters({
+      saving: 'postWizard/saving',
+      postData: 'postWizard/post'
+    }),
+
+    showActionButton () {
+      return !this.saving
     }
   },
 
   methods: {
     ...mapActions({
       create: 'posts/create',
-      reset: 'postWizard/reset'
+      reset: 'postWizard/reset',
+      setSaving: 'postWizard/setSaving'
     }),
 
     save () {
+      this.setSaving(true)
+
       return this.create({ post: this.postData, $axios: this.$axios })
         .then((response) => {
           this.reset()
@@ -60,6 +68,7 @@ export default {
             })
           })
         })
+        .then((response) => this.setSaving(false))
     }
   }
 }
