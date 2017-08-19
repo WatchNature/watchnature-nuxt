@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Notification from '~/components/global/notifications/Notification.vue'
 
 export default {
@@ -21,17 +22,17 @@ export default {
   },
 
   computed: {
-    notifications () {
-      return this.$store.state.notifications.all
-    }
+    ...mapGetters({
+      notifications: 'notifications/all'
+    })
   }
 }
 </script>
 
 <style lang="stylus" scoped>
 .notification-drawer
-  z-index 100
   position fixed
+  z-index 200
   top 0
   right 0
   width 100%
