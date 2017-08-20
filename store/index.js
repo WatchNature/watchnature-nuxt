@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { map } from 'lodash'
 
 export const state = () => ({
   currentUser: null,
@@ -8,6 +9,14 @@ export const state = () => ({
 export const getters = {
   currentUser (state) {
     return state.currentUser
+  },
+
+  currentUserGroups (state) {
+    if (state.currentUser && state.currentUser.groups) {
+      return map(state.currentUser.groups, (group) => group.name)
+    } else {
+      return []
+    }
   }
 }
 

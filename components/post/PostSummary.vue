@@ -7,10 +7,23 @@
     <div v-if="post.user" class="post_summary__meta">
       By <router-link to="/">{{ post.user.email }}</router-link>
     </div>
+
+    <div
+      v-if="showAdminControls"
+      class="admin-controls"
+    >
+      <button
+        @click.prevent="deletePost(post)"
+      >
+        Delete Post
+      </button>
+    </div>
   </article>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { includes } from 'lodash'
 import ObservationList from '~/components/post/observation/ObservationList.vue'
 
 export default {
@@ -24,6 +37,28 @@ export default {
     post: {
       type: Object,
       required: true
+    }
+  },
+
+  computed: {
+    ...mapGetters({
+      currentUserGroups: 'currentUserGroups'
+    }),
+
+    showAdminControls () {
+      return includes(this.currentUserGroups, 'admin')
+    }
+  },
+
+  methods: {
+    deletePost (post) {
+      this.$store.dispatch('posts/delete', { postId: post.id, $axios: this.$axios })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 }
@@ -39,4 +74,14 @@ export default {
 
 .post_summary__meta
   padding $space-2
+
+.admin-controls
+  padding $space-2
+
+  button
+    background-color #db534f
+    border none
+    cursor pointer
+    color #ffffff
+    padding $space-1
 </style>

@@ -1,3 +1,5 @@
+import { reject } from 'lodash'
+
 export const state = () => ({
   included: [],
   all: []
@@ -26,6 +28,10 @@ export const mutations = {
     posts.forEach((post) => {
       state.all.push(post)
     })
+  },
+
+  delete (state, postId) {
+    state.all = reject(state.all, (post) => post.id === postId)
   }
 }
 
@@ -54,6 +60,20 @@ export const actions = {
         })
         .catch(response => {
           reject(response)
+        })
+    })
+  },
+
+  delete (context, { postId, $axios }) {
+    return new Promise((resolve, reject) => {
+      $axios.delete(`posts/${postId}`)
+        .then(response => {
+          context.commit('delete', postId)
+          resolve(response.data)
+        })
+        .catch(err => {
+          console.error(err)
+          reject(err)
         })
     })
   }
