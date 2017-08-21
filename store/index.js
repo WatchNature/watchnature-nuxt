@@ -13,7 +13,7 @@ export const getters = {
 
   currentUserGroups (state) {
     if (state.currentUser && state.currentUser.groups) {
-      return map(state.currentUser.groups, (group) => group.name)
+      return map(state.currentUser.groups, group => group.name)
     } else {
       return []
     }
@@ -48,11 +48,12 @@ export const actions = {
 
   signIn (context, { payload }) {
     return new Promise((resolve, reject) => {
-      axios.post('/sessions/signin', payload)
-        .then((response) => {
+      axios
+        .post('/sessions/signin', payload)
+        .then(response => {
           resolve(response)
         })
-        .catch((err) => {
+        .catch(err => {
           reject(err)
         })
     })
@@ -60,11 +61,12 @@ export const actions = {
 
   signOut (context) {
     return new Promise((resolve, reject) => {
-      axios.post('/sessions/signout')
-        .then((response) => {
+      axios
+        .post('/sessions/signout')
+        .then(response => {
           resolve(response)
         })
-        .catch((err) => {
+        .catch(err => {
           reject(err)
         })
     })

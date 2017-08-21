@@ -16,9 +16,7 @@ export const mutations = {
   },
 
   dismiss (state, notificationId) {
-    state.all = state.all.filter(
-      item => item.id !== notificationId
-    )
+    state.all = state.all.filter(item => item.id !== notificationId)
   }
 }
 
