@@ -7,7 +7,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+      { name: 'apple-mobile-web-app-capable', content: 'no' },
       { name: 'apple-mobile-web-app-title', content: 'Watch Nature' },
       { hid: 'description', name: 'description', content: 'Building a modern social field guide to life on Earth and the community to power it.' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
