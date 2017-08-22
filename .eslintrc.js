@@ -3,14 +3,15 @@ module.exports = {
   parser: 'babel-eslint',
   env: {
     browser: true,
+    es6: true,
     node: true
   },
   extends: 'standard',
   // required to lint *.vue files
-  plugins: [
-    'html'
-  ],
+  plugins: ['html'],
   // add your custom rules here
-  rules: {},
+  rules: {
+    'no-debugger': [0, 'always']
+  },
   globals: {}
 }

@@ -1,14 +1,8 @@
 <template>
   <div>
-    <step-header
-      title="New Post"
-      prevUrl="/"
-      :show-action-button="showActionButton"
-      :actionCallback="save"
-    ></step-header>
+    <step-header title="New Post" prevUrl="/" :show-action-button="showActionButton" :actionCallback="save"></step-header>
 
-    <wizard-menu
-    ></wizard-menu>
+    <wizard-menu></wizard-menu>
   </div>
 </template>
 
@@ -26,7 +20,7 @@ export default {
     WizardMenu
   },
 
-  fetch ({ store, redirect }) {
+  fetch({ store, redirect }) {
     if (!store.state.authToken) {
       return redirect('/signin')
     }
@@ -38,7 +32,7 @@ export default {
       postData: 'postWizard/post'
     }),
 
-    showActionButton () {
+    showActionButton() {
       return !this.saving
     }
   },
@@ -50,15 +44,15 @@ export default {
       setSaving: 'postWizard/setSaving'
     }),
 
-    save () {
+    save() {
       this.setSaving(true)
 
       return this.create({ post: this.postData, $axios: this.$axios })
-        .then((response) => {
+        .then(response => {
           this.reset()
             .then(() => { this.$router.push('/') })
         })
-        .catch(({ response }) => {
+        .catch(response => {
           const errors = response.data.errors
 
           _.forIn(errors, (val, key) => {
@@ -68,7 +62,7 @@ export default {
             })
           })
         })
-        .then((response) => this.setSaving(false))
+        .then(response => this.setSaving(false))
     }
   }
 }
