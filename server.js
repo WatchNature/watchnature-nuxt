@@ -12,9 +12,11 @@ const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || '8080'
 
 if (isProd) {
-  app.use(enforce.HTTPS({
-    trustProtoHeader: true
-  }))
+  app.use(
+    enforce.HTTPS({
+      trustProtoHeader: true
+    })
+  )
 }
 
 app.set('trust proxy', true)
@@ -25,17 +27,19 @@ const redisUrl = process.env.REDISCLOUD_URL || 'redis://localhost:6379'
 const redisClient = require('redis').createClient(redisUrl)
 const RedisStore = require('connect-redis')(session)
 
-app.use(session({
-  proxy: true,
-  store: new RedisStore({client: redisClient}),
-  secret: process.env.SESSION_SECRET || 'a great secret',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: COOKIE_MAX_AGE_DAYS,
-    secure: isProd
-  }
-}))
+app.use(
+  session({
+    proxy: true,
+    store: new RedisStore({ client: redisClient }),
+    secret: process.env.SESSION_SECRET || 'a great secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: COOKIE_MAX_AGE_DAYS,
+      secure: isProd
+    }
+  })
+)
 
 const serverController = require('./server-controller')
 app.post('/sessions/signin', serverController.createSession)
@@ -47,7 +51,7 @@ nuxtConfig.dev = !(process.env.NODE_ENV === 'production')
 const nuxt = new Nuxt(nuxtConfig)
 
 // No build in production
-const promise = (isProd ? Promise.resolve() : new Builder(nuxt).build())
+const promise = isProd ? Promise.resolve() : new Builder(nuxt).build()
 
 promise
   .then(() => {
@@ -55,7 +59,7 @@ promise
     app.listen(port, host)
     console.log(`Server is listening on ${host}:${port}`)
   })
-  .catch((error) => {
+  .catch(error => {
     console.error(error)
     process.exit(1)
   })

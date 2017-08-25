@@ -3766,7 +3766,7 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nuxt@^1.0.0-rc6:
+nuxt@1.0.0rc-6:
   version "1.0.0-rc6"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-1.0.0-rc6.tgz#57b7eb06298f2a4519e19acb30e2ba564a196015"
   dependencies:

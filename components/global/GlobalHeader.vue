@@ -2,7 +2,8 @@
   <header>
     <h1>
       <router-link to="/">
-        <img src="/images/wn-logo.png" alt="Watch Nature">
+        <img src="/images/wn-logo.png"
+          alt="Watch Nature">
       </router-link>
     </h1>
 
@@ -13,18 +14,14 @@
     </nav>
 
     <nav v-if="userIsAuthenticated">
-      <nuxt-link
-        class="dn dib-m"
-        to="/"
-      >
+      <nuxt-link class="dn dib-m"
+        to="/">
         {{ currentUser.email }}
       </nuxt-link>
 
-      <button
-        class="input-reset button-reset ma0 pa0 white bg-transparent bn f5"
+      <button class="input-reset button-reset ma0 pa0 white bg-transparent bn f5"
         @click.prevent="signOut"
-        type="button"
-      >
+        type="button">
         Sign Out
       </button>
     </nav>
