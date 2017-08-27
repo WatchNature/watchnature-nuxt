@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "PORT=8080 node server.js",
     "build": "nuxt build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "node server.js",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
