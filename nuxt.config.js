@@ -43,7 +43,7 @@ module.exports = {
   },
   css: ['tachyons/css/tachyons.css'],
   plugins: [],
-  modules: ['@nuxtjs/axios'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/axios'],
   axios: {
     credentials: false,
     redirectError: {
