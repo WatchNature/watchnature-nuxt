@@ -72,6 +72,6 @@ module.exports = {
         })
       }
     },
-    vendor: ['fuse.js', 'js-cookie', 'lodash', 'date-fns', 'axios', 'vue2-google-maps']
+    vendor: ['fuse.js', 'js-cookie', 'lodash', 'date-fns', 'axios', 'vue2-google-maps', 'vue-mugen-scroll', 'vuex-router-sync']
   }
 }
