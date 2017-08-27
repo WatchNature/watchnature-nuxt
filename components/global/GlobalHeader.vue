@@ -1,20 +1,20 @@
 <template>
   <header>
     <h1>
-      <router-link to="/">
+      <nuxt-link to="/">
         <img src="/images/wn-logo.png"
           alt="Watch Nature">
-      </router-link>
+      </nuxt-link>
     </h1>
 
     <nav v-if="!userIsAuthenticated">
-      <router-link to="/signup">Sign Up</router-link>
+      <nuxt-link to="/signup">Sign Up</nuxt-link>
       &nbsp;
-      <router-link to="/signin">Sign In</router-link>
+      <nuxt-link to="/signin">Sign In</nuxt-link>
     </nav>
 
     <nav v-if="userIsAuthenticated">
-      <nuxt-link class="dn dib-m"
+      <nuxt-link class="dn dib-m dib-l dib-xl"
         to="/">
         {{ currentUser.email }}
       </nuxt-link>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import { isEmpty } from 'lodash'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -39,7 +39,7 @@ export default {
     }),
 
     userIsAuthenticated () {
-      return !_.isEmpty(this.currentUser)
+      return !isEmpty(this.currentUser)
     }
   },
 
