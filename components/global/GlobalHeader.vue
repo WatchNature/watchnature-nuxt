@@ -15,9 +15,8 @@
 
     <nav v-if="userIsAuthenticated">
       <nuxt-link class="dn dib-m dib-l dib-xl"
-        to="/">
-        {{ currentUser.email }}
-      </nuxt-link>
+        to="/"
+        v-text="currentUser.email"></nuxt-link>
 
       <button class="input-reset button-reset ma0 pa0 white bg-transparent bn f5"
         @click.prevent="signOut"
