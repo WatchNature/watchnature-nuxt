@@ -7,6 +7,7 @@ const session = require('express-session')
 const app = require('express')()
 const enforce = require('express-sslify')
 const cors = require('cors')
+const morgan = require('morgan')
 
 const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || '8080'
@@ -22,6 +23,7 @@ if (isProd) {
 app.set('trust proxy', true)
 app.use(bodyParser.json())
 app.use(cors())
+app.use(morgan('combined'))
 
 const redisUrl = process.env.REDISCLOUD_URL || 'redis://localhost:6379'
 const redisClient = require('redis').createClient(redisUrl)
