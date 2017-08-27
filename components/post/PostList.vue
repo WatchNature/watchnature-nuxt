@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/_vars'
+@import '~assets/stylus/_vars'
 
 .loading-bar
   padding $space-2

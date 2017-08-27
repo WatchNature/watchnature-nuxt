@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/_vars'
+@import '~assets/stylus/_vars'
 
 header
   background-color #316fbc

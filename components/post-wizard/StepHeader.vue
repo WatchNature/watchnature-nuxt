@@ -1,7 +1,10 @@
 <template>
   <header class="flex flex-row">
     <div class="flex-auto">
-      <router-link v-if="prevUrl" :to="prevUrl" class="mr2" title="Go Back">
+      <router-link v-if="prevUrl"
+        :to="prevUrl"
+        class="mr2"
+        title="Go Back">
         <icon-chevron class="v-mid"></icon-chevron>
       </router-link>
 
@@ -9,11 +12,9 @@
     </div>
 
     <transition name="slide-fade">
-      <button
-        v-if="showActionButton"
+      <button v-if="showActionButton"
         @click.prevent="actionCallback"
-        class="input-reset button-reset bg-transparent pointer bn ma0 pa0"
-      >
+        class="input-reset button-reset bg-transparent pointer bn ma0 pa0">
         <icon-check class="v-mid"></icon-check>
       </button>
     </transition>
@@ -52,7 +53,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/_vars'
+@import '~assets/stylus/_vars'
 
 header
   background-color #316fbc

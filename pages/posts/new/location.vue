@@ -1,34 +1,26 @@
 <template>
   <div>
-    <step-header
-      title="Add Location"
+    <step-header title="Add Location"
       :prevUrl="prevUrl"
       :show-action-button="showActionButton"
-      :actionCallback="save"
-    ></step-header>
+      :actionCallback="save"></step-header>
 
-    <gmap-map
-      class="map-container"
+    <gmap-map class="map-container"
       :center="{
-        lat: currentLocation.coordinates[0],
-        lng: currentLocation.coordinates[1]
-      }"
-      :zoom="zoom"
-    >
-      <gmap-marker
-        :position="{
           lat: currentLocation.coordinates[0],
           lng: currentLocation.coordinates[1]
         }"
-      ></gmap-marker>
+      :zoom="zoom">
+      <gmap-marker :position="{
+            lat: currentLocation.coordinates[0],
+            lng: currentLocation.coordinates[1]
+          }"></gmap-marker>
     </gmap-map>
 
     <div class="relative z-1">
-      <gmap-autocomplete
-        placeholder="Search by name"
+      <gmap-autocomplete placeholder="Search by name"
         @place_changed="setPlace"
-        :value="locationName"
-      ></gmap-autocomplete>
+        :value="locationName"></gmap-autocomplete>
     </div>
   </div>
 </template>
@@ -173,7 +165,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../../assets/stylus/_vars'
+@import '~assets/stylus/_vars'
 
 .map-container
   height 400px

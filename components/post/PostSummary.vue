@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../assets/stylus/_vars'
+@import '~assets/stylus/_vars'
 
 .post_summary
   background-color #ffffff

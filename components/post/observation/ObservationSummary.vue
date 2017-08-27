@@ -1,20 +1,16 @@
 <template>
   <div>
     <header class="observation_summary__header">
-      <span
-        v-if="observation.species"
-        v-text="startCase(observation.species.common_name)"
-      ></span>
+      <span v-if="observation.species"
+        v-text="startCase(observation.species.common_name)"></span>
 
       <span v-text="observation.location_name"></span>
     </header>
 
     <div class="observation_summary__image">
-      <observation-image
-        v-if="firstImageUrl"
+      <observation-image v-if="firstImageUrl"
         :src="firstImageUrl"
-        :alt="imageAlt()"
-      ></observation-image>
+        :alt="imageAlt()"></observation-image>
     </div>
 
     <div class="observation_summary__description">
@@ -68,7 +64,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../../assets/stylus/_vars'
+@import '~assets/stylus/_vars'
 
 .observation_summary__image
   background $gray-1

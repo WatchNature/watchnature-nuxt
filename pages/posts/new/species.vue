@@ -1,49 +1,37 @@
 <template>
   <div>
-    <step-header
-      title="Add Species"
+    <step-header title="Add Species"
       :prevUrl="prevUrl"
       :show-action-button="showActionButton"
-      :actionCallback="save"
-    ></step-header>
+      :actionCallback="save"></step-header>
 
-    <div
-      v-if="selectedSpecies"
-      class="selected-species"
-    >
+    <div v-if="selectedSpecies"
+      class="selected-species">
       <span class="results__common-name">{{ selectedSpecies.common_name }}</span>
       <span class="results__scientific-name">{{ selectedSpecies.scientific_name }}</span>
     </div>
 
     <form @submit.prevent="search">
-      <input
-        type="text"
+      <input type="text"
         placeholder="Search Species"
         @keydown="search(true)"
-        v-model="keywords"
-      >
+        v-model="keywords">
     </form>
 
-    <ul
-      v-if="results.length"
-      class="results"
-    >
-      <li
-        v-for="result in results"
+    <ul v-if="results.length"
+      class="results">
+      <li v-for="result in results"
         :key="result.id"
         @click="selectSpecies(result)"
-        class="results__list-item"
-      >
+        class="results__list-item">
         <span class="results__common-name">{{ result.common_name }}</span>
         <span class="results__scientific-name">{{ result.scientific_name }}</span>
       </li>
     </ul>
 
-    <button
-      v-if="nextPage && nextPage > 1"
+    <button v-if="nextPage && nextPage > 1"
       @click.prevent="search(false)"
-      class="view-more"
-    >
+      class="view-more">
       View More
     </button>
   </div>
@@ -162,7 +150,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../../../assets/stylus/_vars'
+@import '~assets/stylus/_vars'
 
 .spinner-container
   text-align center

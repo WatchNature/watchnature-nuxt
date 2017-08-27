@@ -1,22 +1,18 @@
 <template>
   <div>
-    <step-header
-      title="Add Description"
+    <step-header title="Add Description"
       :prevUrl="prevUrl"
       :show-action-button="showActionButton"
-      :actionCallback="save"
-    ></step-header>
+      :actionCallback="save"></step-header>
 
     <form @submit.prevent="save">
       <div class="input-group">
         <label for="post_description">Description</label>
-        <textarea
-          id="post_description"
+        <textarea id="post_description"
           name="post[description]"
           v-model="post.description"
           rows="8"
-          cols="80"
-        ></textarea>
+          cols="80"></textarea>
       </div>
     </form>
   </div>
@@ -70,7 +66,7 @@ export default {
 </script>
 
 <style lang="stylus" scope>
-@import '../../../assets/stylus/_vars'
+@import '~assets/stylus/_vars'
 
 .action-group
   margin-top $space-2
