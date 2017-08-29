@@ -6,6 +6,7 @@ module.exports = {
     titleTemplate: '%s - Watch Nature',
     meta: [
       { charset: 'utf-8' },
+      { name: 'robots', content: 'noindex' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'apple-mobile-web-app-capable', content: 'no' },
       { name: 'apple-mobile-web-app-title', content: 'Watch Nature' },
@@ -72,6 +73,15 @@ module.exports = {
         })
       }
     },
-    vendor: ['fuse.js', 'js-cookie', 'lodash', 'date-fns', 'axios', 'vue2-google-maps', 'vue-mugen-scroll', 'vuex-router-sync']
+    vendor: [
+      'fuse.js',
+      'js-cookie',
+      'lodash',
+      'date-fns',
+      'axios',
+      'vue2-google-maps',
+      'vue-mugen-scroll',
+      'vuex-router-sync'
+    ]
   }
 }
