@@ -30,6 +30,13 @@ export const mutations = {
     })
   },
 
+  // Adds a post to the top of the stack
+  addToTop (state, posts) {
+    posts.forEach(post => {
+      state.all.unshift(post)
+    })
+  },
+
   delete (state, postId) {
     state.all = reject(state.all, post => post.id === postId)
   }
@@ -57,7 +64,7 @@ export const actions = {
       $axios
         .post('posts', { post: post })
         .then(response => {
-          context.commit('add', [response.data.data])
+          context.commit('addToTop', [response.data.data])
           resolve(response.data.data)
         })
         .catch(response => {
