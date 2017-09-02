@@ -50,6 +50,8 @@ export const actions = {
         .then(response => {
           const posts = response.data.data
           context.commit('add', posts)
+          processPostObservations(context, posts)
+
           resolve(response.data)
         })
         .catch(err => {
@@ -64,8 +66,10 @@ export const actions = {
       $axios
         .post('posts', { post: post })
         .then(response => {
-          context.commit('addToTop', [response.data.data])
-          resolve(response.data.data)
+          let post = response.data.data
+          context.commit('addToTop', [post])
+          processPostObservations(context, [post])
+          resolve(post)
         })
         .catch(response => {
           reject(response)
@@ -87,4 +91,14 @@ export const actions = {
         })
     })
   }
+}
+
+// Relocate observations into their own module so that
+// their actions, mutations etc are isolated. Also delete
+// them so that there aren't duplicate observations in the store.
+const processPostObservations = (context, posts) => {
+  posts.forEach(post => {
+    context.dispatch('observations/add', post.observations, { root: true })
+    delete post.observations
+  })
 }

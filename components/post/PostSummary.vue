@@ -1,7 +1,7 @@
 <template lang="html">
   <article class="post_summary">
     <observation-list
-      :observations="post.observations"
+      :observations="postObservations"
     ></observation-list>
 
     <div v-if="post.user" class="post_summary__meta">
@@ -47,6 +47,10 @@ export default {
 
     showAdminControls () {
       return includes(this.currentUserGroups, 'admin')
+    },
+
+    postObservations () {
+      return this.$store.getters['observations/findByPostId'](this.post.id)
     }
   },
 
