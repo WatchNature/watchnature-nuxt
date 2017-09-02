@@ -39,7 +39,7 @@
     "js-cookie": "^2.1.4",
     "lodash": "^4.17.4",
     "morgan": "^1.8.2",
-    "nuxt": "1.0.0-rc6",
+    "nuxt": "1.0.0-rc8",
     "prettier-eslint": "^6.4.2",
     "redis": "^2.8.0",
     "stylus": "^0.54.5",
@@ -47,6 +47,7 @@
     "tachyons": "^4.7.4",
     "vue-lazyload": "^1.0.6",
     "vue-mugen-scroll": "^0.2.5",
+    "vue-popover": "^1.6.0",
     "vue2-google-maps": "^0.7.10",
     "vuex-router-sync": "^4.2.0"
   }
