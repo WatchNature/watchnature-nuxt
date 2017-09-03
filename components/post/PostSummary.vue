@@ -8,29 +8,44 @@
       By <router-link to="/">{{ post.user.email }}</router-link>
     </div>
 
-    <div
+    <popover
       v-if="showAdminControls"
-      class="admin-controls"
-    >
-      <button
-        @click.prevent="deletePost(post)"
+      name="admin"
+      class="admin-controls dib">
+      <div 
+        slot="face"
       >
-        Delete Post
-      </button>
-    </div>
+        <button
+          @click.prevent
+          class="button button--info"
+        >Admin</button>
+      </div>
+      <div slot="content">
+        <ul>
+          <li>
+            <button
+              @click.prevent="deletePost(post)"
+              class="button nowrap"
+            >Delete Post</button>
+          </li>
+        </ul>
+      </div>
+    </popover>
   </article>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { includes } from 'lodash'
+import popover from 'vue-popover'
 import ObservationList from '~/components/post/observation/ObservationList.vue'
 
 export default {
   name: 'PostSummary',
 
   components: {
-    ObservationList
+    ObservationList,
+    popover
   },
 
   props: {
@@ -80,12 +95,8 @@ export default {
   padding $space-2
 
 .admin-controls
-  padding $space-2
-
-  button
-    background-color #db534f
-    border none
-    cursor pointer
-    color #ffffff
-    padding $space-1
+  margin-left $space-2
+  margin-right $space-2
+  padding-top $space-2
+  padding-bottom $space-2
 </style>

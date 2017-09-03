@@ -42,7 +42,11 @@ module.exports = {
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
     GA_ID: process.env.GA_IDK
   },
-  css: ['tachyons/css/tachyons.css'],
+  css: [
+    'tachyons/css/tachyons.css',
+    'vue-popover/dist/styles.css',
+    '@/assets/stylus/global.styl'
+  ],
   plugins: [],
   modules: ['@nuxtjs/pwa', '@nuxtjs/axios'],
   axios: {
