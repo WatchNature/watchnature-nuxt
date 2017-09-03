@@ -4,10 +4,6 @@
       :observations="postObservations"
     ></observation-list>
 
-    <div v-if="post.user" class="post_summary__meta">
-      By <router-link to="/">{{ post.user.email }}</router-link>
-    </div>
-
     <popover
       v-if="showAdminControls"
       name="admin"

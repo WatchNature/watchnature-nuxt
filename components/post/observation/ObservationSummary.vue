@@ -13,21 +13,30 @@
         :alt="imageAlt()"></observation-image>
     </div>
 
-    <div class="observation_summary__description">
-      <div class="observation__meta">
-        <button v-if="userHasLiked"
-          class="button button--unlike"
-          @click.prevent="unlike">
-          Unlike
-        </button>
+    <div class="observation__meta flex justify-between items-center pa3">
+      <div class="flex items-center">
+        <avatar :username="postUser.full_name"></avatar>
 
-        <button v-else
-          class="button button--like"
-          @click.prevent="like">
-          Like
-        </button>
+        <div class="pl2">
+          <span class="db" v-text="postUser.full_name"></span>
+          <span v-text="formattedInsertedAt"></span>
+        </div>
       </div>
 
+      <button v-if="userHasLiked"
+        class="button button--unlike"
+        @click.prevent="unlike">
+        Unlike
+      </button>
+
+      <button v-else
+        class="button button--like"
+        @click.prevent="like">
+        Like
+      </button>
+    </div>
+
+    <div class="observation_summary__description">
       <p v-text="observation.description"></p>
     </div>
   </div>
@@ -36,12 +45,15 @@
 <script>
 import ObservationImage from '~/components/post/observation/observation-image.vue'
 import { startCase } from 'lodash'
+import { parse, distanceInWords } from 'date-fns'
+import Avatar from 'vue-avatar/dist/Avatar.vue'
 
 export default {
   name: 'ObservationSummary',
 
   components: {
-    ObservationImage
+    ObservationImage,
+    Avatar
   },
 
   props: {
@@ -52,6 +64,13 @@ export default {
   },
 
   computed: {
+    formattedInsertedAt () {
+      let insertedAt = parse(this.observation.inserted_at)
+      let distance = distanceInWords(insertedAt, new Date())
+
+      return `${distance} ago`
+    },
+
     firstImageUrl () {
       const images = this.observation.images
 
@@ -62,6 +81,11 @@ export default {
       } else {
         return null
       }
+    },
+
+    postUser () {
+      let post = this.$store.getters['posts/findById'](this.observation.post_id)
+      return post.user
     },
 
     userHasLiked () {
@@ -115,9 +139,6 @@ export default {
 
 .observation_summary__description > p
   margin 0
-
-.observation__meta
-  text-align right
 
 .button
   cursor pointer

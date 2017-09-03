@@ -16,6 +16,10 @@ export const getters = {
 
   postUserById: (state, getters) => id => {
     return getters.allPostUsers.find(user => user.id === id)
+  },
+
+  findById: (state, getters) => postId => {
+    return getters.allPosts.find(post => post.id === postId)
   }
 }
 

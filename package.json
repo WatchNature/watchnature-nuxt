@@ -45,6 +45,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "tachyons": "^4.7.4",
+    "vue-avatar": "^2.0.0",
     "vue-lazyload": "^1.0.6",
     "vue-mugen-scroll": "^0.2.5",
     "vue-popover": "^1.6.0",
