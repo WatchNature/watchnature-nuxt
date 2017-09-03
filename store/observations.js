@@ -21,58 +21,56 @@ export const mutations = {
 
   add (state, observations) {
     observations.forEach(observation => {
-      state.all.push(observation)
+      let existingIndex = state.all.findIndex(existingObservation => {
+        return observation.id === existingObservation.id
+      })
+
+      if (existingIndex > -1) {
+        state.all.splice(existingIndex, 1, observation)
+      } else {
+        state.all.push(observation)
+      }
     })
+  },
+
+  like (state, { observation, likeId }) {
+    let existingIndex = state.all.findIndex(existingObservation => {
+      return observation.id === existingObservation.id
+    })
+
+    state.all[existingIndex].current_user.like_id = likeId
+  },
+
+  unlike (state, observation) {
+    let existingIndex = state.all.findIndex(existingObservation => {
+      return observation.id === existingObservation.id
+    })
+
+    state.all[existingIndex].current_user.like_id = null
   }
 }
 
 export const actions = {
-  findAll (context, { params, $axios }) {
-    return new Promise((resolve, reject) => {
-      $axios
-        .get('observations', { params: params })
-        .then(response => {
-          const observations = response.data.data
-          context.commit('add', observations)
-          resolve(response.data)
-        })
-        .catch(err => {
-          console.error(err)
-          reject(err)
-        })
-    })
-  },
-
   add (context, observations) {
     context.commit('add', observations)
   },
 
-  create (context, { observation, $axios }) {
+  like (context, observation) {
     return new Promise((resolve, reject) => {
-      $axios
-        .observation('observations', { observation: observation })
-        .then(response => {
-          context.commit('addToTop', [response.data.data])
-          resolve(response.data.data)
-        })
-        .catch(response => {
-          reject(response)
-        })
+      this.$axios.post(`posts/${observation.post_id}/observations/${observation.id}/like`).then(response => {
+        let likeId = response.data.data.id
+        context.commit('like', { observation: observation, likeId: likeId })
+        resolve(response.data.data)
+      })
     })
   },
 
-  delete (context, { observationId, $axios }) {
+  unlike (context, observation) {
     return new Promise((resolve, reject) => {
-      $axios
-        .delete(`observations/${observationId}`)
-        .then(response => {
-          context.commit('delete', observationId)
-          resolve(response.data)
-        })
-        .catch(err => {
-          console.error(err)
-          reject(err)
-        })
+      this.$axios.delete(`posts/${observation.post_id}/observations/${observation.id}/like`).then(response => {
+        context.commit('unlike', observation)
+        resolve(response.data.data)
+      })
     })
   }
 }

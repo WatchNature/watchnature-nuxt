@@ -14,6 +14,20 @@
     </div>
 
     <div class="observation_summary__description">
+      <div class="observation__meta">
+        <button v-if="userHasLiked"
+          class="button button--unlike"
+          @click.prevent="unlike">
+          Unlike
+        </button>
+
+        <button v-else
+          class="button button--like"
+          @click.prevent="like">
+          Like
+        </button>
+      </div>
+
       <p v-text="observation.description"></p>
     </div>
   </div>
@@ -48,6 +62,14 @@ export default {
       } else {
         return null
       }
+    },
+
+    userHasLiked () {
+      if (this.observation.current_user.like_id === null) {
+        return false
+      } else {
+        return true
+      }
     }
   },
 
@@ -58,6 +80,14 @@ export default {
 
     imageAlt () {
       return `Photo: ${this.observation.description}`
+    },
+
+    like () {
+      return this.$store.dispatch('observations/like', this.observation)
+    },
+
+    unlike () {
+      return this.$store.dispatch('observations/unlike', this.observation)
     }
   }
 }
@@ -85,4 +115,20 @@ export default {
 
 .observation_summary__description > p
   margin 0
+
+.observation__meta
+  text-align right
+
+.button
+  cursor pointer
+  background $color-info
+  color #ffffff
+  border none
+  padding $space-1 $space-2
+
+.button--like
+  background $color-success
+
+.button--unlike
+  background $color-error
 </style>
