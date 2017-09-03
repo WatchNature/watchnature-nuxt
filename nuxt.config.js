@@ -40,7 +40,7 @@ module.exports = {
     API_URL: process.env.API_URL,
     API_AUTH_URL: process.env.API_AUTH_URL,
     GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
-    GA_ID: process.env.GA_IDK
+    GA_ID: process.env.GA_ID
   },
   css: [
     'tachyons/css/tachyons.css',
@@ -48,7 +48,7 @@ module.exports = {
     '@/assets/stylus/global.styl'
   ],
   plugins: [],
-  modules: ['@nuxtjs/pwa', '@nuxtjs/axios'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/axios', ['@nuxtjs/google-analytics', { ua: process.env.GA_ID }]],
   axios: {
     credentials: false,
     redirectError: {
