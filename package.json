@@ -40,7 +40,7 @@
     "js-cookie": "^2.1.4",
     "lodash": "^4.17.4",
     "morgan": "^1.8.2",
-    "nuxt": "1.0.0-rc8",
+    "nuxt": "1.0.0-rc11",
     "prettier-eslint": "^6.4.2",
     "redis": "^2.8.0",
     "stylus": "^0.54.5",
