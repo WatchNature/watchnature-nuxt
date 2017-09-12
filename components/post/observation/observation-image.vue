@@ -36,5 +36,5 @@ img[lazy=error] {}
 img[lazy=loaded] {}
 
 img
-  display block
+  vertical-align middle
 </style>
