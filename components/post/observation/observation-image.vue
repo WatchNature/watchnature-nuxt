@@ -1,9 +1,7 @@
 <template>
   <div>
-    <img
-      v-lazy="src"
-      :alt="alt"
-    />
+    <img v-lazy="src"
+      :alt="alt" />
   </div>
 </template>
 
@@ -33,7 +31,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  img[lazy=loading] {}
-  img[lazy=error] {}
-  img[lazy=loaded] {}
+img[lazy=loading] {}
+img[lazy=error] {}
+img[lazy=loaded] {}
+
+img
+  display block
 </style>

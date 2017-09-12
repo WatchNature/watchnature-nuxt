@@ -128,7 +128,7 @@ export default {
 
 .observation_summary__image
   background $gray-1
-  min-height 400px
+  min-height 320px
   width 100%
   display flex
   align-items center
