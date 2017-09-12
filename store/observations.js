@@ -38,7 +38,10 @@ export const mutations = {
       return observation.id === existingObservation.id
     })
 
-    state.all[existingIndex].current_user.like_id = likeId
+    let existingObservation = state.all[existingIndex]
+
+    existingObservation.current_user.like_id = likeId
+    existingObservation.likes_count += 1
   },
 
   unlike (state, observation) {
@@ -46,7 +49,10 @@ export const mutations = {
       return observation.id === existingObservation.id
     })
 
-    state.all[existingIndex].current_user.like_id = null
+    let existingObservation = state.all[existingIndex]
+
+    existingObservation.current_user.like_id = null
+    existingObservation.likes_count -= 1
   }
 }
 
