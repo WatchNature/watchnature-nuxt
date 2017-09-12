@@ -18,22 +18,28 @@
         <avatar :username="postUser.full_name"></avatar>
 
         <div class="pl2">
-          <span class="db" v-text="postUser.full_name"></span>
+          <span class="db"
+            v-text="postUser.full_name"></span>
           <span v-text="formattedInsertedAt"></span>
         </div>
       </div>
 
-      <button v-if="userHasLiked"
-        class="button button--unlike"
-        @click.prevent="unlike">
-        Unlike
-      </button>
+      <div>
+        <span class="observation__likes-count"
+          v-text="observation.likes_count"></span>
 
-      <button v-else
-        class="button button--like"
-        @click.prevent="like">
-        Like
-      </button>
+        <button v-if="userHasLiked"
+          class="button button--unlike"
+          @click.prevent="unlike">
+          Unlike
+        </button>
+
+        <button v-else
+          class="button button--like"
+          @click.prevent="like">
+          Like
+        </button>
+      </div>
     </div>
 
     <div class="observation_summary__description">
@@ -132,6 +138,9 @@ export default {
   padding $space-2
   display flex
   justify-content space-between
+
+.observation__likes-count
+  margin-right $space-2
 
 .observation_summary__description
   padding $space-2
