@@ -83,7 +83,7 @@ export default {
       if (images.length > 0) {
         let url = images[0].url
 
-        return `${url}?max-w=800&max-h=1200&crop=entropy&auto=format,compress`
+        return `${url}?w=1440&h=1440&fit=crop&usm=20&auto=format,compress`
       } else {
         return null
       }
