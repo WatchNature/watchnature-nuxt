@@ -26,7 +26,7 @@
 
       <div>
         <span class="observation__likes-count"
-          v-text="observation.likes_count"></span>
+          v-text="observation.reactions.likes"></span>
 
         <button v-if="userHasLiked"
           class="button button--unlike"
