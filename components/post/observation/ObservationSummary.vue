@@ -108,10 +108,14 @@ export default {
     },
 
     recentLikes () {
+      let likes = this.observation.reactions.likes
       let liker = this.observation.reactions.recent_likers[0]
 
+      if (likes === 0) {
+        return null
+      }
+
       if (liker) {
-        let likes = this.observation.reactions.likes
         let likedBy = likes === 1 ? 'Liked by' : ''
         let others
 
