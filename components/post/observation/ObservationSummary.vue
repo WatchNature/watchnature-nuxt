@@ -113,7 +113,15 @@ export default {
       if (liker) {
         let likes = this.observation.reactions.likes
         let likedBy = likes === 1 ? 'Liked by' : ''
-        let others = likes > 1 ? `and ${likes} others` : ''
+        let others
+
+        if (likes > 2) {
+          others = `and ${likes - 1} others`
+        } else if (likes === 2) {
+          others = `and ${likes} other`
+        } else if (likes === 1) {
+          others = ''
+        }
 
         return `${likedBy} ${liker.first_name} ${liker.last_name} ${others}`
       } else {
@@ -128,7 +136,7 @@ export default {
     },
 
     imageAlt () {
-      return `Photo: ${this.observation.description}`
+      return `Photo: ${this.observation.description} `
     },
 
     like () {
