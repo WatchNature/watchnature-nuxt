@@ -13,18 +13,19 @@
         :alt="imageAlt()"></observation-image>
     </div>
 
-    <div class="observation__meta flex justify-between items-center pa3">
+    <div class="observation__meta flex pa3 flex justify-between items-center w-100">
       <div class="flex items-center">
         <avatar :username="postUser.full_name"></avatar>
 
         <div class="pl2">
           <span class="db"
             v-text="postUser.full_name"></span>
-          <span v-text="formattedInsertedAt"></span>
+          <span class="f7"
+            v-text="formattedInsertedAt"></span>
         </div>
       </div>
 
-      <div>
+      <div class="tr">
         <span class="observation__likes-count"
           v-text="observation.reactions.likes"></span>
 
@@ -39,6 +40,10 @@
           @click.prevent="like">
           Like
         </button>
+
+        <span class="db f7 mt2"
+          v-if="recentLikes"
+          v-text="recentLikes"></span>
       </div>
     </div>
 
@@ -99,6 +104,20 @@ export default {
         return false
       } else {
         return true
+      }
+    },
+
+    recentLikes () {
+      let liker = this.observation.reactions.recent_likers[0]
+
+      if (liker) {
+        let likes = this.observation.reactions.likes
+        let likedBy = likes === 1 ? 'Liked by' : ''
+        let others = likes > 1 ? `and ${likes} others` : ''
+
+        return `${likedBy} ${liker.first_name} ${liker.last_name} ${others}`
+      } else {
+        return null
       }
     }
   },
