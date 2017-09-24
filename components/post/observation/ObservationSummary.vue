@@ -56,7 +56,7 @@
 <script>
 import ObservationImage from '~/components/post/observation/observation-image.vue'
 import { startCase } from 'lodash'
-import { parse, distanceInWords } from 'date-fns'
+import { distanceInWordsToNow } from 'date-fns'
 import Avatar from 'vue-avatar/dist/Avatar.vue'
 
 export default {
@@ -76,9 +76,7 @@ export default {
 
   computed: {
     formattedInsertedAt () {
-      let insertedAt = parse(this.observation.inserted_at)
-      let distance = distanceInWords(insertedAt, new Date())
-
+      let distance = distanceInWordsToNow(this.observation.inserted_at)
       return `${distance} ago`
     },
 
