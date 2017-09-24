@@ -118,7 +118,7 @@ export default {
         if (likes > 2) {
           others = `and ${likes - 1} others`
         } else if (likes === 2) {
-          others = `and ${likes} other`
+          others = `and ${likes - 1} other`
         } else if (likes === 1) {
           others = ''
         }
