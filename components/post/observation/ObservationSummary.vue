@@ -3,6 +3,7 @@
     <header class="observation_summary__header">
       <span v-if="observation.species"
         v-text="startCase(observation.species.common_name)"></span>
+      <span v-else>Missing Identification</span>
 
       <span v-text="observation.location_name"></span>
     </header>
