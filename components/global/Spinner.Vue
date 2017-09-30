@@ -6,10 +6,15 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'Spinner'
+}
+</script>
+
 <style lang="stylus" scoped>
 .spinner
   width 70px
-  display inline-block
   display inline-block
 
 .spinner > div
