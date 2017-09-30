@@ -4,22 +4,24 @@ import { cloneDeep } from 'lodash'
 // but for the current version, the UI doesn't allow
 // more than one observation to be created with a post.
 const blankPost = {
-  observations: [{
-    species: {},
-    species_id: null,
-    description: '',
-    location_name: '',
-    location: {
-      coordinates: [0, 0],
-      type: 'Point'
-    },
-    tag_ids: [],
-    images: [
-      {
-        url: null
-      }
-    ]
-  }]
+  observations: [
+    {
+      species: {},
+      species_id: null,
+      description: '',
+      location_name: '',
+      location: {
+        coordinates: [0, 0],
+        type: 'Point'
+      },
+      tag_ids: [],
+      images: [
+        {
+          url: null
+        }
+      ]
+    }
+  ]
 }
 
 export const state = () => ({
@@ -89,6 +91,10 @@ export const mutations = {
     observation.species_id = species.id
   },
 
+  resetImage (state) {
+    state.post.observations[0].images[0].url = null
+  },
+
   reset (state) {
     state.post = cloneDeep(blankPost)
   }
@@ -130,6 +136,13 @@ export const actions = {
   addSpecies (context, species) {
     return new Promise((resolve, reject) => {
       context.commit('addSpecies', species)
+      resolve()
+    })
+  },
+
+  resetImage (context) {
+    return new Promise((resolve, reject) => {
+      context.commit('resetImage')
       resolve()
     })
   },

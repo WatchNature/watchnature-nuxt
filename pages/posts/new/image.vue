@@ -1,27 +1,40 @@
 <template>
   <div>
-    <step-header
-      title="Add Image"
+    <step-header title="Add Image"
       :prevUrl="prevUrl"
       :show-action-button="showActionButton"
-      :actionCallback="save"
-    ></step-header>
+      :actionCallback="save"></step-header>
 
-    <div class="imageform__container" v-if="imageUrl">
+    <div class="imageform__container flex items-center justify-center"
+      v-if="imageUrl && !saving"
+      @click="resetImage">
       <img :src="imageUrl" />
     </div>
-
-    <div v-else>
+    <div class="imageform__container"
+      v-if="!imageUrl && !saving">
       <form @submit.prevent="upload">
-        <input ref="imageinput" type="file">
-        <input type="submit" value="Upload">
+        <label class="imageform__label flex items-center justify-center"
+          for="image">
+          <span>Choose an Image</span>
+        </label>
+        <input ref="imageinput"
+          class="imageform__input"
+          id="image"
+          type="file"
+          @change="upload">
       </form>
+    </div>
+
+    <div class="imageform__container flex items-center justify-center"
+      v-if="saving">
+      <spinner></spinner>
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import Spinner from '~/components/global/Spinner.vue'
 import StepHeader from '~/components/post-wizard/StepHeader.vue'
 
 export default {
@@ -29,7 +42,8 @@ export default {
   layout: 'PostWizard',
 
   components: {
-    StepHeader
+    StepHeader,
+    Spinner
   },
 
   fetch ({ store, redirect }) {
@@ -47,6 +61,7 @@ export default {
 
   computed: {
     ...mapGetters({
+      saving: 'postWizard/saving',
       imageUrl: 'postWizard/imageUrl'
     }),
 
@@ -61,16 +76,9 @@ export default {
 
   methods: {
     ...mapActions({
-      addImageUrl: 'postWizard/addImageUrl'
+      addImageUrl: 'postWizard/addImageUrl',
+      resetImage: 'postWizard/resetImage'
     }),
-
-    getFormData () {
-      this.$axios.get('presigned_post')
-        .then((response) => {
-          this.formData = response.data.data.url
-          console.log(this.presignedUrl)
-        })
-    },
 
     upload () {
       let payload = new FormData()
@@ -78,6 +86,9 @@ export default {
 
       payload.append('file', image, image.name)
 
+      this.$store.dispatch('postWizard/setSaving', true)
+      // For now all postWizard actions are just getters and setters
+      // TODO: Do this in the store
       this.$axios.post('media', payload)
         .then((response) => {
           const url = response.data.url
@@ -86,6 +97,9 @@ export default {
         .catch((err) => {
           console.log(err)
           // TODO: Pop notification
+        })
+        .then(() => {
+          this.$store.dispatch('postWizard/setSaving', false)
         })
     },
 
@@ -98,5 +112,31 @@ export default {
 
 <style lang="stylus" scoped>
 .imageform__container
+  overflow hidden
+  position fixed
+  top 40px
+  left 0px
+  width 100%
+  height calc(100% - 40px)
   text-align center
+
+  img
+    background-color #000000
+
+.imageform__label
+  position absolute
+  background-color rgba(0, 0, 0, 0.05)
+  height 100%
+  width 100%
+  top 0
+  left 0
+  min-height 300px
+
+.imageform__input
+	width 0.1px
+	height 0.1px
+	opacity 0
+	overflow hidden
+	position absolute
+	z-index -1
 </style>
