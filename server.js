@@ -13,6 +13,7 @@ const host = process.env.HOST || '0.0.0.0'
 const port = process.env.PORT || '8080'
 
 if (isProd) {
+  app.use(morgan('combined'))
   app.use(
     enforce.HTTPS({
       trustProtoHeader: true
@@ -23,7 +24,6 @@ if (isProd) {
 app.set('trust proxy', true)
 app.use(bodyParser.json())
 app.use(cors())
-app.use(morgan('combined'))
 
 const redisUrl = process.env.REDISCLOUD_URL || 'redis://localhost:6379'
 const redisClient = require('redis').createClient(redisUrl)
