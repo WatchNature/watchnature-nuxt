@@ -36,7 +36,12 @@ export default {
     }),
 
     showActionButton () {
-      return !this.saving
+      return !this.saving && this.postHasObservationWithImage
+    },
+
+    postHasObservationWithImage () {
+      let observationImageUrl = this.postData.observations[0].images[0].url
+      return observationImageUrl !== null
     }
   },
 
