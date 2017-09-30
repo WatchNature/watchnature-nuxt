@@ -98,10 +98,10 @@ export default {
     },
 
     userHasLiked () {
-      if (this.observation.current_user.like_id === null) {
-        return false
-      } else {
+      if (this.observation.current_user && this.observation.current_user.like !== null) {
         return true
+      } else {
+        return false
       }
     },
 

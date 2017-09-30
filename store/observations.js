@@ -33,14 +33,14 @@ export const mutations = {
     })
   },
 
-  like (state, { observation, likeId }) {
+  like (state, { observation, likeResponse }) {
     let existingIndex = state.all.findIndex(existingObservation => {
       return observation.id === existingObservation.id
     })
 
     let existingObservation = state.all[existingIndex]
 
-    existingObservation.current_user.like_id = likeId
+    existingObservation.current_user.like = likeResponse
     existingObservation.reactions.likes += 1
   },
 
@@ -51,7 +51,7 @@ export const mutations = {
 
     let existingObservation = state.all[existingIndex]
 
-    existingObservation.current_user.like_id = null
+    existingObservation.current_user.like = null
     existingObservation.reactions.likes -= 1
   }
 }
@@ -64,8 +64,8 @@ export const actions = {
   like (context, observation) {
     return new Promise((resolve, reject) => {
       this.$axios.post(`posts/${observation.post_id}/observations/${observation.id}/like`).then(response => {
-        let likeId = response.data.data.id
-        context.commit('like', { observation: observation, likeId: likeId })
+        let likeResponse = response.data.data
+        context.commit('like', { observation: observation, likeResponse: likeResponse })
         resolve(response.data.data)
       })
     })
