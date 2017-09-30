@@ -8,8 +8,9 @@
 
 <style lang="stylus" scoped>
 .spinner
-  width: 70px
-  display: inline-block
+  width 70px
+  display inline-block
+  display inline-block
 
 .spinner > div
   width 10px
