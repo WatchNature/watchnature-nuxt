@@ -27,14 +27,13 @@
 
     <div class="imageform__container flex items-center justify-center"
       v-if="saving">
-      <spinner></spinner>
+      Uploading...
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import Spinner from '~/components/global/Spinner.vue'
 import StepHeader from '~/components/post-wizard/StepHeader.vue'
 
 export default {
@@ -42,8 +41,7 @@ export default {
   layout: 'PostWizard',
 
   components: {
-    StepHeader,
-    Spinner
+    StepHeader
   },
 
   fetch ({ store, redirect }) {
