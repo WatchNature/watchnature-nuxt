@@ -60,7 +60,7 @@ header
   background linear-gradient(to bottom, rgba(9,141,193,1) 0%, rgba(49,111,188,1) 100%)
   color #ffffff
   overflow hidden
-  padding $space-1
+  padding $space-1 $space-2 $space-1 $space-1
   position fixed
   top 0
   left 0

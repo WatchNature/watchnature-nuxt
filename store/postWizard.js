@@ -6,7 +6,10 @@ import { cloneDeep } from 'lodash'
 const blankPost = {
   observations: [
     {
-      species: {},
+      species: {
+        common_name: '',
+        scientific_name: ''
+      },
       species_id: null,
       description: '',
       location_name: '',
@@ -17,7 +20,7 @@ const blankPost = {
       tag_ids: [],
       images: [
         {
-          url: null
+          url: ''
         }
       ]
     }

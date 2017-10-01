@@ -1,83 +1,41 @@
 <template>
-  <div>
-    <router-link
-      class="link db"
-      to="/posts/new/description"
-      title="Add/Edit Description"
-    >
-      <div v-if="description">
-        <p class="ma0">{{ description }}</p>
-      </div>
+  <div class="container">
+    <wizard-menu-item to="/posts/new/image"
+      resource-title="Image"
+      :resource="imageUrl">
+      <img slot="preview"
+        :src="imageUrl" />
+    </wizard-menu-item>
 
-      <span v-else>
-        Add Description
-      </span>
-    </router-link>
+    <wizard-menu-item to="/posts/new/description"
+      resource-title="Description"
+      :resource="description"></wizard-menu-item>
 
-    <router-link
-      class="link mt3 db"
-      to="/posts/new/location"
-      title="Add/Edit Location"
-    >
-      <div v-if="locationName">
-        <p class="ma0" v-text="locationName"></p>
-      </div>
+    <wizard-menu-item to="/posts/new/location"
+      resource-title="Location"
+      :resource="locationName"></wizard-menu-item>
 
-      <span v-else>
-        Add Location
-      </span>
-    </router-link>
+    <wizard-menu-item to="/posts/new/tags"
+      resource-title="Tags"
+      :resource="tagList"></wizard-menu-item>
 
-    <router-link
-      class="link mt3 db"
-      to="/posts/new/image"
-      title="Add/Edit Image"
-    >
-      <div v-if="imageUrl">
-        <img :src="imageUrl" />
-      </div>
-
-      <span v-else>
-        Add Image
-      </span>
-    </router-link>
-
-    <router-link
-      class="link mt3 db"
-      to="/posts/new/tags"
-      title="Add/Edit Tags"
-    >
-      <div v-if="tagIds.length">
-        <p class="ma0">{{ tagList }}</p>
-      </div>
-
-      <span v-else>
-        Add Tags
-      </span>
-    </router-link>
-
-    <router-link
-      class="link mt3 db"
-      to="/posts/new/species"
-      title="Add/Edit Species"
-    >
-      <div v-if="species.common_name">
-        <p class="ma0" v-text="species.common_name"></p>
-      </div>
-
-      <span v-else>
-        Add Species
-      </span>
-    </router-link>
+    <wizard-menu-item to="/posts/new/species"
+      resource-title="Species"
+      :resource="species.common_name"></wizard-menu-item>
   </div>
 </template>
 
 <script>
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
+import WizardMenuItem from './WizardMenuItem'
 
 export default {
   name: 'WizardMenu',
+
+  components: {
+    WizardMenuItem
+  },
 
   computed: {
     ...mapGetters({
@@ -118,3 +76,8 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+@import '~assets/stylus/_vars.styl'
+</style>
+

@@ -30,8 +30,7 @@ body
   background #f0f0f0
 
 .wrap
-  padding-top 68px
-  padding-bottom 50px
+  padding-top 40px
   max-width 45rem
   margin 0 auto
 
